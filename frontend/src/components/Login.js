@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Auth.css'; // New CSS file for shared styling
+import { useNavigate } from 'react-router-dom';
+import './Auth.css';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -14,8 +16,9 @@ const Login = () => {
                 username,
                 password,
             });
+            localStorage.setItem('token', response.data.token); // Store JWT token
             setMessage("Login successful!");
-            localStorage.setItem('token', response.data.token);
+            navigate('/home'); // Redirect to Home
         } catch (error) {
             setMessage(error.response?.data?.message || "Error occurred");
         }
