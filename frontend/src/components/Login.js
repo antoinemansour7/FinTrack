@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Auth.css'; // New CSS file for shared styling
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -14,31 +15,33 @@ const Login = () => {
                 password,
             });
             setMessage("Login successful!");
-            localStorage.setItem('token', response.data.token); // Store token
+            localStorage.setItem('token', response.data.token);
         } catch (error) {
-            setMessage(error.response.data.message || "Error occurred");
+            setMessage(error.response?.data?.message || "Error occurred");
         }
     };
 
     return (
-        <div>
+        <div className="auth-container">
             <h2>Login</h2>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className="auth-form">
                 <input
                     type="text"
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    className="auth-input"
                 />
                 <input
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className="auth-input"
                 />
-                <button type="submit">Login</button>
+                <button type="submit" className="auth-button">Login</button>
             </form>
-            <p>{message}</p>
+            <p className="auth-message">{message}</p>
         </div>
     );
 };
