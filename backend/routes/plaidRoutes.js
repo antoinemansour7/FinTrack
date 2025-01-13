@@ -63,4 +63,27 @@ router.post('/link-token', async (req, res) => {
         res.status(500).json({ error: 'Failed to create link token' });
     }
 });
+
+
+router.get('/accounts', async (req, res) => {
+    const { userId } = req.query; // Get userId from query parameters
+
+    try {
+        const user = await User.findById(userId);
+        if (!user || !user.plaidAccessToken) {
+            return res.status(404).json({ error: 'User or access token not found' });
+        }
+
+        const response = await plaidClient.accountsGet({
+            access_token: user.plaidAccessToken,
+        });
+
+        res.json(response.data.accounts); // Return account data to the frontend
+    } catch (error) {
+        console.error('Error fetching accounts:', error.response?.data || error);
+        res.status(500).json({ error: 'Failed to fetch accounts' });
+    }
+});
+
+
 module.exports = router;
