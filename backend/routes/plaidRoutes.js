@@ -9,25 +9,32 @@ router.post('/exchange-public-token', async (req, res) => {
 
     try {
         const response = await plaidClient.itemPublicTokenExchange({
-            public_token,
+            public_token, // Exchange the public token with Plaid
         });
 
-        const access_token = response.data.access_token;
-        const item_id = response.data.item_id;
+        const plaidAccessToken = response.data.access_token;
+        const plaidItemId = response.data.item_id;
 
-        console.log('Access Token:', access_token);
-        console.log('Item ID:', item_id);
+        console.log('Access Token:', plaidAccessToken);
+        console.log('Item ID:', plaidItemId);
 
-        // Save access_token and item_id to the database for the logged-in user
-        await User.findByIdAndUpdate(userId, {
-            plaidAccessToken: access_token,
-            plaidItemId: item_id,
-        });
+        // Update the user's document in the database
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            {
+                plaidAccessToken,
+                plaidItemId,
+            },
+            { new: true } // Return the updated document after the update
+        );
 
-        res.json({ access_token, item_id });
+        console.log("Updated User:", updatedUser);
+
+        // Respond with the tokens or success message
+        res.json({ access_token: plaidAccessToken, item_id: plaidItemId });
     } catch (error) {
-        console.error('Error exchanging public token:', error.response?.data || error);
-        res.status(500).json({ error: 'Failed to exchange public token' });
+        console.error("Error exchanging public token:", error.response?.data || error);
+        res.status(500).json({ error: "Failed to exchange public token" });
     }
 });
 

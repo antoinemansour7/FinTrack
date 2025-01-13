@@ -3,8 +3,8 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import PlaidLinkComponent from './components/PlaidLinkComponent';
-import Home from './components/Home'; // Import Home component
+import Home from './components/Home';
+import ProtectedRoute from './components/ProtectedRoute'; // Import ProtectedRoute
 
 function App() {
     const location = useLocation(); // Get the current route
@@ -26,8 +26,16 @@ function App() {
                         element={
                             <div className="landing-page">
                                 <div className="landing-buttons">
-                                    <Link to="/signup" className="landing-link">Signup</Link>
-                                    <Link to="/login" className="landing-link">Login</Link>
+                                    <button className="landing-button">
+                                        <Link to="/signup" className="landing-link">
+                                            Signup
+                                        </Link>
+                                    </button>
+                                    <button className="landing-button">
+                                        <Link to="/login" className="landing-link">
+                                            Login
+                                        </Link>
+                                    </button>
                                 </div>
                             </div>
                         }
@@ -35,8 +43,11 @@ function App() {
                     {/* Additional Routes */}
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/plaid-link" element={<PlaidLinkComponent />} />
-                    <Route path="/home" element={<Home />} /> {/* Add Home route */}
+                    <Route path="/home" element={
+                        <ProtectedRoute>
+                            <Home />
+                        </ProtectedRoute>
+                    } />
                 </Routes>
             </main>
         </div>

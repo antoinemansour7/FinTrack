@@ -16,9 +16,11 @@ const Login = () => {
                 username,
                 password,
             });
-            localStorage.setItem('token', response.data.token); // Store JWT token
+            const { token, userId } = response.data; // Extract userId from backend response
+            localStorage.setItem('token', token);
+            localStorage.setItem('userId', userId); // Save userId to localStorage
             setMessage("Login successful!");
-            navigate('/home'); // Redirect to Home
+            navigate('/home'); // Redirect to homepage
         } catch (error) {
             setMessage(error.response?.data?.message || "Error occurred");
         }

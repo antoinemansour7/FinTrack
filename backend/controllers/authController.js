@@ -37,7 +37,8 @@ const login = async (req, res) => {
             expiresIn: '1h',
         });
 
-        res.status(200).json({ token });
+        // Include userId in the response
+        res.status(200).json({ token, userId: user._id });
     } catch (error) {
         res.status(500).json({ message: "Internal server error", error });
     }

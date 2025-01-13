@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt');
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    plaidAccessToken: { type: String }, // Field to store the Plaid access token
+    plaidItemId: { type: String },      // Field to store the Plaid item ID
 }, { timestamps: true });
 
 // Pre-save middleware to hash passwords
