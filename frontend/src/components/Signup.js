@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Auth.css'; // Shared styling with Login
+import '../styling/Auth.css'; // Adjust to the relative location of Auth.css
 
 const Signup = () => {
     const [username, setUsername] = useState('');

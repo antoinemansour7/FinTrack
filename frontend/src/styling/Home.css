@@ -1,0 +1,99 @@
+/* General container styling */
+.home-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.home-header {
+    margin-bottom: 20px;
+}
+
+.home-title {
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.home-subtitle {
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* Plaid connect button styling */
+.plaid-connect button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.plaid-connect button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Section title styling */
+.section-title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Bank accounts grid styling */
+.accounts-section {
+    margin-top: 20px;
+}
+
+.accounts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Account card styling */
+.account-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.account-card h3 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.account-card p {
+    font-size: 1em;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Sign out button styling */
+.signout-button {
+    margin-top: 30px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signout-button:hover {
+    background-color: #c9302c;
+}

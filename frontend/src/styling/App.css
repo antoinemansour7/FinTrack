@@ -1,0 +1,175 @@
+/* General App Styling */
+.app-container {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Landing Page */
+.landing-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: calc(100vh - 60px); /* Exclude footer height */
+    padding: 40px;
+    background-color: #ffffff;
+}
+
+/* Left Section */
+.landing-left {
+    width: 55%;
+    text-align: left;
+    padding: 20px;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.normal-logo {
+    width: 100px;
+    height: auto;
+}
+
+.landing-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 3.5em;
+    font-weight: bold;
+    color: #2c6e49; /* Dark Green */
+    margin-bottom: 20px;
+}
+
+.landing-description {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.features-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature-box {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature-box h3 {
+    font-size: 1.5em;
+    color: #2c6e49; /* Dark Green */
+    margin-bottom: 10px;
+}
+
+.feature-box p {
+    font-size: 1em;
+    color: #555;
+}
+
+/* Right Section */
+.landing-right {
+    width: 40%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-left: 2px solid #ddd;
+}
+
+.dynamic-diagram {
+    width: 100%;
+    height: 200px;
+    background-color: #f3f3f3;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    color: #aaa;
+}
+
+/* Buttons */
+.landing-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.primary-button,
+.secondary-button {
+    background-color: #2c6e49; /* Dark Green */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+    background-color: #234d3f; /* Darker Green */
+}
+
+/* Footer */
+.app-footer {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-top: 2px solid #ddd;
+    text-align: center;
+    font-size: 1em;
+    color: #666;
+}
+
+.faq-text {
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .landing-page {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .landing-left,
+    .landing-right {
+        width: 100%;
+    }
+
+    .landing-title {
+        font-size: 2.5em;
+        text-align: center;
+    }
+
+    .landing-description,
+    .features-grid {
+        text-align: center;
+    }
+}
