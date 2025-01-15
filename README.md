@@ -47,7 +47,8 @@ FinTrack is a personal finance management tool designed to help users track expe
    cd fintrack
 
 2.	Install dependencies:
-    ```npm install
+    ```bash
+    npm install
 
 3.  Set up environment variables:
     •Create a .env file in the root directory with the following:
@@ -57,6 +58,7 @@ FinTrack is a personal finance management tool designed to help users track expe
        PLAID_ENV=sandbox
 
 4.	Start the development server:
-    ```npm start
+    ```bash
+    npm start
 
 5. Navigate to http://localhost:3000 to view the app.
