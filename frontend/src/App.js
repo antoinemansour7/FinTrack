@@ -1,48 +1,68 @@
-import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import './styling/App.css';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import Home from './components/Home';
-import ProtectedRoute from './components/ProtectedRoute';
+import Home from './components/Home'; // Import Home component
 import logo from './logo.jpg'; // Import your logo
+import { useNavigate, Routes, Route } from 'react-router-dom';
 
 function App() {
+    const [activeComponent, setActiveComponent] = useState(null); // Manage active component
+    const navigate = useNavigate();
+
+    const handleLoginSuccess = () => {
+        navigate('/home'); // Redirect to home on successful login
+    };
+
     const renderLandingPage = () => (
         <div className="landing-page">
             {/* Left Section */}
             <div className="landing-left">
-                <div className="logo-container">
+                <div className="logo-title-container">
                     <img src={logo} alt="FinTrack Logo" className="normal-logo" />
+                    <h1 className="landing-title">FinTrack</h1>
                 </div>
-                <h1 className="landing-title">FinTrack</h1>
                 <p className="landing-description">
-                    Master your financial future with FinTrack. Track expenses, set goals, and gain insights to achieve financial freedom!
+                    Take control of your finances with intelligent tracking, 
+                    smart insights, and personalized recommendations.
                 </p>
 
                 <h2 className="section-title">Why Choose FinTrack?</h2>
                 <div className="features-grid">
                     <div className="feature-box">
-                        <h3>Smart Expense Tracking</h3>
-                        <p>Automatically categorize and analyze your spending patterns.</p>
+                        <h3>Expense Tracking</h3>
+                        <p>Monitor and categorize your spending automatically</p>
                     </div>
                     <div className="feature-box">
-                        <h3>Secure Banking Integration</h3>
-                        <p>Seamlessly connect your bank account with military-grade security.</p>
+                        <h3>Banking Security</h3>
+                        <p>Bank-level encryption keeps your data safe</p>
                     </div>
                     <div className="feature-box">
-                        <h3>Custom Financial Goal Setting</h3>
-                        <p>Create and track custom financial goals to suit your needs.</p>
+                        <h3>Smart Goals</h3>
+                        <p>Set and achieve your financial milestones</p>
                     </div>
                 </div>
             </div>
 
             {/* Right Section */}
             <div className="landing-right">
-                <div className="dynamic-diagram">[Dynamic Diagrams Placeholder]</div>
                 <div className="landing-buttons">
-                    <Link to="/signup" className="primary-button">Get Started</Link>
-                    <Link to="/login" className="secondary-button">Sign In</Link>
+                    <button
+                        onClick={() => setActiveComponent('signup')}
+                        className={`primary-button ${activeComponent === 'signup' ? 'button-active' : 'button-inactive'}`}
+                    >
+                        Get Started
+                    </button>
+                    <button
+                        onClick={() => setActiveComponent('login')}
+                        className={`secondary-button ${activeComponent === 'login' ? 'button-active' : 'button-inactive'}`}
+                    >
+                        Sign In
+                    </button>
+                </div>
+                <div className="active-component-container">
+                    {activeComponent === 'signup' && <Signup />}
+                    {activeComponent === 'login' && <Login onLoginSuccess={handleLoginSuccess} />}
                 </div>
             </div>
         </div>
@@ -53,16 +73,7 @@ function App() {
             <main className="main-content">
                 <Routes>
                     <Route path="/" element={renderLandingPage()} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route
-                        path="/home"
-                        element={
-                            <ProtectedRoute>
-                                <Home />
-                            </ProtectedRoute>
-                        }
-                    />
+                    <Route path="/home" element={<Home />} /> {/* Add Home Route */}
                 </Routes>
             </main>
             <footer className="app-footer">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../styling/Auth.css'; // Adjust to the relative location of Auth.css
+import '../styling/Signup.css'; // Ensure this path is correct for the CSS file
 
 const Signup = () => {
     const [username, setUsername] = useState('');
@@ -21,26 +21,38 @@ const Signup = () => {
     };
 
     return (
-        <div className="auth-container">
-            <h2>Signup</h2>
-            <form onSubmit={handleSignup} className="auth-form">
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="auth-input"
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="auth-input"
-                />
-                <button type="submit" className="auth-button">Signup</button>
+        <div className="signup-container">
+            <h2 className="signup-title">Signup</h2>
+            <form onSubmit={handleSignup} className="signup-form">
+                <div className="input-group">
+                    <label htmlFor="username" className="input-label">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter your username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        className="signup-input"
+                    />
+                </div>
+                <div className="input-group">
+                    <label htmlFor="password" className="input-label">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="signup-input"
+                    />
+                </div>
+                <button type="submit" className="signup-button">Signup</button>
             </form>
-            <p className="auth-message">{message}</p>
+            {message && (
+                <p className={`signup-message ${message.includes("successful") ? "success" : "error"}`}>
+                    {message}
+                </p>
+            )}
         </div>
     );
 };

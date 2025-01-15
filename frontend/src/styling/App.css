@@ -1,31 +1,49 @@
+/* Font Import */
+@font-face {
+    font-family: 'FluffPlush';
+    src: url('./fonts/FluffPlush.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --primary: #2c6e49;
+    --text-dark: #1a1a1a;
+    --text-light: #666666;
+    --background: #ffffff;
+    --shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+}
+
 /* General App Styling */
 .app-container {
     font-family: 'Arial', sans-serif;
-    text-align: center;
-    color: #333;
+    color: var(--text-dark);
     margin: 0;
     padding: 0;
+    background-color: var(--background);
 }
 
 /* Landing Page */
 .landing-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 24px;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: calc(100vh - 60px); /* Exclude footer height */
-    padding: 40px;
-    background-color: #ffffff;
+    gap: 60px;
+    min-height: calc(100vh - 60px);
 }
 
 /* Left Section */
 .landing-left {
-    width: 55%;
-    text-align: left;
-    padding: 20px;
+    flex: 1;
+    padding-right: 40px;
 }
 
-.logo-container {
-    margin-bottom: 20px;
+.logo-title-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo and title */
+    margin-bottom: 40px;
 }
 
 .normal-logo {
@@ -34,66 +52,69 @@
 }
 
 .landing-title {
-    font-family: 'Arial', sans-serif;
-    font-size: 3.5em;
+    font-family: 'FluffPlush', Arial, sans-serif; /* Apply Bubbly Font */
+    font-size: 4.5em;
     font-weight: bold;
-    color: #2c6e49; /* Dark Green */
-    margin-bottom: 20px;
+    color: var(--primary);
+    margin: 0;
+    line-height: 1.1;
 }
 
 .landing-description {
     font-size: 1.2em;
-    color: #555;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 24px 0 48px;
 }
 
 .section-title {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 15px;
+    font-family: 'FluffPlush', Arial, sans-serif; /* Apply Bubbly Font */
+    font-size: 2.5em;
+    color: var(--primary);
+    margin: 0 0 32px;
 }
 
 .features-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
 }
 
 .feature-box {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: var(--background);
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
 }
 
 .feature-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
 }
 
 .feature-box h3 {
-    font-size: 1.5em;
-    color: #2c6e49; /* Dark Green */
-    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.3em;
+    color: var(--text-dark);
+    margin-bottom: 12px;
 }
 
 .feature-box p {
     font-size: 1em;
-    color: #555;
+    color: var(--text-light);
+    line-height: 1.5;
 }
 
 /* Right Section */
 .landing-right {
-    width: 40%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    border-left: 2px solid #ddd;
+    width: 400px;
+    padding: 40px;
+    background-color: var(--background);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    align-self: flex-start;
+    position: sticky;
+    top: 40px;
 }
 
 .dynamic-diagram {
@@ -113,35 +134,43 @@
 .landing-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 16px;
+    margin-bottom: 32px;
 }
 
 .primary-button,
 .secondary-button {
-    background-color: #2c6e49; /* Dark Green */
+    flex: 1;
+    background-color: var(--primary); /* Dark Green */
     color: white;
-    padding: 15px 30px;
-    border-radius: 5px;
-    font-size: 1.2em;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.2s ease;
+}
+
+.secondary-button {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
 }
 
 .primary-button:hover,
 .secondary-button:hover {
-    background-color: #234d3f; /* Darker Green */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
 /* Footer */
 .app-footer {
-    background-color: #f9f9f9;
     padding: 20px;
-    border-top: 2px solid #ddd;
     text-align: center;
-    font-size: 1em;
-    color: #666;
+    color: var(--text-light);
+    border-top: 1px solid #eee;
 }
 
 .faq-text {
@@ -151,11 +180,10 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 968px) {
     .landing-page {
         flex-direction: column;
-        align-items: center;
-        padding: 20px;
+        padding: 24px;
     }
 
     .landing-left,
@@ -164,7 +192,7 @@
     }
 
     .landing-title {
-        font-size: 2.5em;
+        font-size: 3em;
         text-align: center;
     }
 
@@ -172,4 +200,21 @@
     .features-grid {
         text-align: center;
     }
+
+    .section-title {
+        font-size: 2em;
+    }
+}
+
+/* Add active and default button styles */
+.button-active {
+    background-color: var(--primary); /* Dark Green */
+    color: white;
+    border: none;
+}
+
+.button-inactive {
+    background-color: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
 }
