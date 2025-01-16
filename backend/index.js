@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const chatRoutes = require("./routes/chatRoutes");
 const plaidRoutes = require('./routes/plaidRoutes'); // Adjust the path if needed
-require('dotenv').config();
+
 
 const app = express();
 
@@ -19,10 +21,12 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('Connected to MongoDB'))
 .catch((err) => console.error('MongoDB connection error:', err));
 
+
 // Routes
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 app.use('/api/plaid', plaidRoutes); // Add Plaid routes
+app.use("/api/chat", chatRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 3000;
