@@ -86,4 +86,42 @@ router.get('/accounts', async (req, res) => {
 });
 
 
+router.get('/transactions', async (req, res) => {
+    const { userId, startDate, endDate } = req.query;
+
+    try {
+        const user = await User.findById(userId);
+        if (!user || !user.plaidAccessToken) {
+            return res.status(404).json({ error: 'User or access token not found' });
+        }
+
+        // Fetch transactions from Plaid
+        const response = await plaidClient.transactionsGet({
+            access_token: user.plaidAccessToken,
+            start_date: startDate || '2023-01-01', // Provide default start date if not specified
+            end_date: endDate || new Date().toISOString().split('T')[0], // Default to today's date
+            options: {
+                count: 100, // Limit to 100 transactions
+                offset: 0, // Start from the first transaction
+            },
+        });
+
+        // Map transactions to include only relevant fields, including logo_url
+        const transactions = response.data.transactions.map((transaction) => ({
+            transaction_id: transaction.transaction_id,
+            name: transaction.name,
+            date: transaction.date,
+            amount: transaction.amount,
+            logo_url: transaction.logo_url, // Add logo URL
+            iso_currency_code: transaction.iso_currency_code,
+        }));
+
+        res.json(transactions); // Return transactions to the frontend
+    } catch (error) {
+        console.error('Error fetching transactions:', error.response?.data || error);
+        res.status(500).json({ error: 'Failed to fetch transactions' });
+    }
+});
+
 module.exports = router;
+

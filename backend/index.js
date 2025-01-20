@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const chatRoutes = require("./routes/chatRoutes");
 const plaidRoutes = require('./routes/plaidRoutes'); // Adjust the path if needed
+const insightsRoutes = require('./routes/insightsRoutes');
 
 
 const app = express();
@@ -27,6 +28,7 @@ const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 app.use('/api/plaid', plaidRoutes); // Add Plaid routes
 app.use("/api/chat", chatRoutes);
+app.use('/api/insights', insightsRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 3000;

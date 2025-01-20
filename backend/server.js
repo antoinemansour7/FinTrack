@@ -1,0 +1,9 @@
+// ...existing imports...
+const insightsRoutes = require('./routes/insightsRoutes');
+
+// ...existing middleware...
+
+// Add the new routes
+app.use('/api/insights', insightsRoutes);
+
+// ...rest of your server code...
