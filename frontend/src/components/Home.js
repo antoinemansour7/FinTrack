@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
+import Layout from './Layout';
 import PlaidLinkComponent from './PlaidLinkComponent';
 import AccountDetails from './AccountDetails';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styling/Home.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -57,105 +59,83 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="dashboard-container">
-            <nav className="dashboard-nav">
-                <div className="nav-content">
-                    <h1 className="dashboard-logo">FinTrack</h1>
-                    <button onClick={handleSignOut} className="signout-button">
-                        <i className="fas fa-sign-out-alt"></i>
-                        Sign Out
-                    </button>
-                </div>
-            </nav>
-
-            <div className="dashboard-content">
+        <Layout>
+            <div className="dashboard-grid">
                 <div className="welcome-section">
-                    <div className="welcome-text">
-                        <h2 className="section-title">Your Financial Overview</h2>
-                        <p>Track your wealth, achieve your goals</p>
-                    </div>
-                    <div className="plaid-link-wrapper">
-                        <PlaidLinkComponent />
-                    </div>
+                    <h1>Welcome Back</h1>
+                    <p>Here's your financial overview</p>
                 </div>
 
-                <div className="stats-grid">
-                    <div className="stat-card feature-box">
-                        <div className="stat-header">
-                            <i className="fas fa-wallet"></i>
-                            <h3 className="section-title">Total Balance</h3>
-                        </div>
+                <div className="quick-stats">
+                    <div className="stat-card">
                         <AccountDetails view="total" />
                     </div>
-                    
-                    <div className="stat-card feature-box">
-    <div className="stat-header">
-        <i className="fas fa-chart-line"></i>
-        <h3 className="section-title">Recent Activity</h3>
-    </div>
-    <div className="transactions-container" onScroll={handleScroll} ref={transactionRef}>
-        {transactions.length > 0 ? (
-            <div className="transactions-list">
-                {transactions.slice(0, displayedTransactions).map((transaction) => (
-                    <div key={transaction.transaction_id} className="transaction-item">
-                        <div className="transaction-icon">
-                            {transaction.logo_url ? (
-                                <img
-                                    src={transaction.logo_url}
-                                    alt={transaction.name}
-                                    className="transaction-logo"
-                                />
-                            ) : (
-                                <i
-                                    className={`fas ${
-                                        transaction.amount < 0
-                                            ? 'fa-arrow-down expense'
-                                            : 'fa-arrow-up income'
-                                    }`}
-                                ></i>
-                            )}
-                        </div>
-                        <div className="transaction-details">
-                            <p className="transaction-name">{transaction.name}</p>
-                            <p className="transaction-date">
-                                {new Date(transaction.date).toLocaleDateString('en-US', {
-                                    month: 'short',
-                                    day: 'numeric',
-                                })}
-                            </p>
-                        </div>
-                        <div className="transaction-amount">
-                            {transaction.amount.toLocaleString('en-US', {
-                                style: 'currency',
-                                currency: transaction.iso_currency_code || 'USD',
-                            })}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        ) : (
-            <div className="empty-state">
-                <i className="fas fa-receipt"></i>
-                <p>{error || 'No transactions yet'}</p>
-            </div>
-        )}
-    </div>
-</div>
                 </div>
 
-                <div className="accounts-section feature-box">
-                    <div className="section-header">
-                        <div className="header-title">
-                            <i className="fas fa-university"></i>
-                            <h3 className="section-title">Connected Accounts</h3>
+                <div className="main-grid">
+                    <div className="transactions-card">
+                        <div className="card-header">
+                            <h2>Recent Transactions</h2>
+                        </div>
+                        <div className="transactions-container" onScroll={handleScroll} ref={transactionRef}>
+                            {transactions.length > 0 ? (
+                                <div className="transactions-list">
+                                    {transactions.slice(0, displayedTransactions).map((transaction) => (
+                                        <div key={transaction.transaction_id} className="transaction-item">
+                                            <div className="transaction-icon">
+                                                {transaction.logo_url ? (
+                                                    <img
+                                                        src={transaction.logo_url}
+                                                        alt={transaction.name}
+                                                        className="transaction-logo"
+                                                    />
+                                                ) : (
+                                                    <i
+                                                        className={`fas ${
+                                                            transaction.amount < 0
+                                                                ? 'fa-arrow-down expense'
+                                                                : 'fa-arrow-up income'
+                                                        }`}
+                                                    ></i>
+                                                )}
+                                            </div>
+                                            <div className="transaction-details">
+                                                <p className="transaction-name">{transaction.name}</p>
+                                                <p className="transaction-date">
+                                                    {new Date(transaction.date).toLocaleDateString('en-US', {
+                                                        month: 'short',
+                                                        day: 'numeric',
+                                                    })}
+                                                </p>
+                                            </div>
+                                            <div className="transaction-amount">
+                                                {transaction.amount.toLocaleString('en-US', {
+                                                    style: 'currency',
+                                                    currency: transaction.iso_currency_code || 'USD',
+                                                })}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="empty-state">
+                                    <i className="fas fa-receipt"></i>
+                                    <p>{error || 'No transactions yet'}</p>
+                                </div>
+                            )}
                         </div>
                     </div>
-                    <div className="accounts-grid">
+
+                    <div className="accounts-card">
+                        <div className="card-header">
+                            <h2>Connected Accounts</h2>
+                            <PlaidLinkComponent />
+                        </div>
                         <AccountDetails view="detailed" />
                     </div>
                 </div>
             </div>
-        </div>
+        </Layout>
     );
 };
 

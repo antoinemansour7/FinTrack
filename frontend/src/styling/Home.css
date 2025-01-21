@@ -462,3 +462,30 @@
     font-weight: bold;
     text-align: right;
 }
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-links .primary-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.nav-links .primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.nav-links i {
+    font-size: 1rem;
+}

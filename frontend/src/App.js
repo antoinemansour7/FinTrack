@@ -6,6 +6,8 @@ import Login from './components/Login';
 import Home from './components/Home';
 import logo from './logo.jpg';
 import { useNavigate, Routes, Route } from 'react-router-dom';
+import FinancialInsights from './components/FinancialInsights';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
     const [activeComponent, setActiveComponent] = useState(null);
@@ -77,7 +79,16 @@ function App() {
             <main className="main-content">
                 <Routes>
                     <Route path="/" element={renderLandingPage()} />
-                    <Route path="/home" element={<Home />} />
+                    <Route path="/home" element={
+                        <PrivateRoute>
+                            <Home />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/insights" element={
+                        <PrivateRoute>
+                            <FinancialInsights />
+                        </PrivateRoute>
+                    } />
                 </Routes>
             </main>
             <footer className="app-footer">
