@@ -21,6 +21,14 @@ FinTrack is a personal finance management tool designed to help users track expe
 
 ---
 
+## **Screenshots**
+
+### Landing Page
+![FinTrack Landing Page](/docs/images/homepage.png)
+*Our modern and intuitive landing page*
+
+---
+
 ## **Tech Stack**
 - **Frontend**: React.js
 - **Backend**: Node.js, Express.js

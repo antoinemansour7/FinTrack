@@ -48,6 +48,10 @@ function App() {
                         <h3>Smart Goals</h3>
                         <p>Set and achieve your financial milestones.</p>
                     </div>
+                    <div className="feature-box">
+                        <h3>AI Assistant</h3>
+                        <p>Get personalized financial advice with our AI chat assistant.</p>
+                    </div>
                 </div>
             </div>
 
