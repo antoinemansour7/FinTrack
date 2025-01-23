@@ -24,7 +24,7 @@ FinTrack is a personal finance management tool designed to help users track expe
 ## **Screenshots**
 
 ### Landing Page
-![FinTrack Landing Page](/docs/images/homepage.png)
+![FinTrack Landing Page](/frontend/src/homepage.png)
 *Our modern and intuitive landing page*
 
 ---
