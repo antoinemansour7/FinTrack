@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../styling/Layout.css';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, username }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -22,17 +22,13 @@ const Layout = ({ children }) => {
                     <div className="left-section">
                         <h1 className="app-logo">FinTrack</h1>
                         <nav className="main-nav">
-                            <Link to="/dashboard" className={`nav-link ${isActive('/dashboard') ? 'active' : ''}`}>
+                            <Link to="/home" className={`nav-link ${isActive('/home') ? 'active' : ''}`}>
                                 <i className="fas fa-home"></i>
                                 Dashboard
                             </Link>
                             <Link to="/insights" className={`nav-link ${isActive('/insights') ? 'active' : ''}`}>
                                 <i className="fas fa-chart-pie"></i>
                                 Insights
-                            </Link>
-                            <Link to="/transactions" className={`nav-link ${isActive('/transactions') ? 'active' : ''}`}>
-                                <i className="fas fa-exchange-alt"></i>
-                                Transactions
                             </Link>
                             <Link to="/budgets" className={`nav-link ${isActive('/budgets') ? 'active' : ''}`}>
                                 <i className="fas fa-wallet"></i>

@@ -8,6 +8,8 @@ import logo from './logo.jpg';
 import { useNavigate, Routes, Route } from 'react-router-dom';
 import FinancialInsights from './components/FinancialInsights';
 import PrivateRoute from './components/PrivateRoute';
+import Insights from './components/Insights';  // Add this import
+import Budgets from './components/Budgets';    // Add this import
 
 function App() {
     const [activeComponent, setActiveComponent] = useState(null);
@@ -90,7 +92,12 @@ function App() {
                     } />
                     <Route path="/insights" element={
                         <PrivateRoute>
-                            <FinancialInsights />
+                            <Insights />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/budgets" element={
+                        <PrivateRoute>
+                            <Budgets />
                         </PrivateRoute>
                     } />
                 </Routes>
